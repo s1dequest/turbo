@@ -1,5 +1,5 @@
 # turbo 🏎️💨_____🚗_🚗_🚗
-### Turbocharged CI/CD - Deploying to AWS EKS. 
+### Turbocharged, Hands-free, CI/CD 
 
 #### The idea:
 * Have Code you want to Deploy? Use _**turbo**_: a fully formed, automated, end-to-end app deployment system. 
