@@ -4,12 +4,12 @@
 #### The idea:
 * Have Code you want to Deploy? Use _**turbo**_: a fully formed, automated, end-to-end app deployment system. 
   * Roadway:
-    0. Deploy an empty EKS Cluster to send the code to.
-    1. Code 
-    2. => Container (Dockerfile)
-    3. => Jenkins build and send Dockerhub 
-    4. => AWS EKS
-    5. => One of my domains
+    * Deploy an empty EKS Cluster to send the code to.
+    * => Code 
+    * => Container (Dockerfile)
+    * => Jenkins build and send Dockerhub 
+    * => AWS EKS
+    * => One of my domains
 
 #### The Cluster:
 * Before we deploy we need a cluster. Use a infrastructure as code and simple bash scripts to automate creation and testing functionality of an AWS EKS cluster.
