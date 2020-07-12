@@ -1,27 +1,33 @@
 // reference: https://www.terraform.io/docs/providers/aws/index.html
-resource "aws_eks_cluster" "turbo-v1" {
-  name     = "turbo"
-  role_arn = "value"
+provider "aws" {
+  region  = "us-east-1"
+  profile = "default"
+  
+}
 
+variable "clusterName" {}
+resource "aws_eks_cluster" "turbo" {
+  name     = var.clusterName
+  role_arn = aws_iam_role.turbo-eks-role.arn
   vpc_config {
     subnet_ids = ["value"]
   }
 
   depends_on = [
-    "aws_iam_role_policy_attachment.AWSEKSClusterPolicy",
-    "aws_iam_role_policy_attachment.AWSEKSServicePolicy"
+    aws_iam_role_policy_attachment.AWSEKSClusterPolicy,
+    aws_iam_role_policy_attachment.AWSEKSServicePolicy
   ]
 }
 
 output "endpoint" {
-  value = "${aws_eks_cluster.turbo-v1.endpoint}"
+  value = aws_eks_cluster.turbo.endpoint
 }
 
 output "kubeconfig-certificate-authority-data" {
-  value = "${aws_eks_cluster.turbo-v1.certificate_authority.0.data}"
+  value = aws_eks_cluster.turbo.certificate_authority.0.data
 }
 
-resource "aws_iam_role" "turbo-v1-eks-role" {
+resource "aws_iam_role" "turbo-eks-role" {
   name = "turbo-eks-role"
 
   assume_role_policy = <<POLICY
@@ -40,13 +46,13 @@ resource "aws_iam_role" "turbo-v1-eks-role" {
 POLICY
 }
 
-// referenced as a dependency in the turbo-v1 eks cluster resource.
+// referenced as a dependency in the turbo eks cluster resource.
 resource "aws_iam_role_policy_attachment" "AWSEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSClusterPolicy"
-  role       = "${aws_iam_role.turbo-v1-eks-role.turbo-eks-role}"  
+  role       = aws_iam_role.turbo-eks-role.name
 }
 
 resource "aws_iam_role_policy_attachment" "AWSEKSServicePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSServicePolicy"
-  role       = "${aws_iam_role.turbo-v1-eks-role.turbo-eks-role}"  
+  role       = aws_iam_role.turbo-eks-role.name
 }
