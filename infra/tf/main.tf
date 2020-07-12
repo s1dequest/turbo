@@ -6,9 +6,9 @@ provider "aws" {
 }
 
 variable "clusterName" {}
-resource "aws_eks_cluster" "turbo" {
+resource "aws_eks_cluster" "turbo-cluster" {
   name     = var.clusterName
-  role_arn = aws_iam_role.turbo-eks-role.arn
+  role_arn = aws_iam_role.iam-eks-role.arn
   vpc_config {
     subnet_ids = ["value"]
   }
@@ -20,15 +20,15 @@ resource "aws_eks_cluster" "turbo" {
 }
 
 output "endpoint" {
-  value = aws_eks_cluster.turbo.endpoint
+  value = aws_eks_cluster.turbo-cluster.endpoint
 }
 
 output "kubeconfig-certificate-authority-data" {
-  value = aws_eks_cluster.turbo.certificate_authority.0.data
+  value = aws_eks_cluster.turbo-cluster.certificate_authority.0.data
 }
 
-resource "aws_iam_role" "turbo-eks-role" {
-  name = "turbo-eks-role"
+resource "aws_iam_role" "iam-eks-role" {
+  name = "turbo-cluster-eks-role"
 
   assume_role_policy = <<POLICY
 {
@@ -46,13 +46,13 @@ resource "aws_iam_role" "turbo-eks-role" {
 POLICY
 }
 
-// referenced as a dependency in the turbo eks cluster resource.
+// referenced as a dependency in the "turbo-cluster" eks cluster resource.
 resource "aws_iam_role_policy_attachment" "AWSEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.turbo-eks-role.name
+  role       = aws_iam_role.iam-eks-role.name
 }
 
 resource "aws_iam_role_policy_attachment" "AWSEKSServicePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSServicePolicy"
-  role       = aws_iam_role.turbo-eks-role.name
+  role       = aws_iam_role.iam-eks-role.name
 }
