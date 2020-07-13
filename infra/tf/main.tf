@@ -5,7 +5,6 @@ provider "aws" {
   
 }
 
-variable "clusterName" {}
 resource "aws_eks_cluster" "turbo-cluster" {
   name     = var.clusterName
   role_arn = aws_iam_role.iam-eks-role.arn
