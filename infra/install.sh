@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-export ENV_VAR1=$(echo "I am an environment variable, probably some cli command or tfvar reference.")
-
-terraform init
-terraform apply
+export CLUSTER_NAME=$(jq -r '.clusterName' ./terraform.tfvars.json | tr -d "[:cntrl:]")
+echo $CLUSTER_NAME
+# terraform init
+# terraform apply
