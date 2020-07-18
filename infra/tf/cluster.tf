@@ -1,16 +1,9 @@
 // reference: https://www.terraform.io/docs/providers/aws/index.html
-provider "aws" {
-  region  = "us-east-1"
-  profile = "default"
-  
-}
-
-resource "aws_eks_cluster" "turbo-cluster" {
-  name     = var.clusterName
-  role_arn = aws_iam_role.iam-eks-role.arn
-  vpc_config {
-    subnet_ids = ["value"]
-  }
+module "eks" {
+  source       = "terraform-aws-modules/eks/aws"
+  cluster_name = local.cluster_name
+  role_arn  = aws_iam_role.iam-eks-role.arn
+  vpc_id    = module.vpc.vpc_id
 
   depends_on = [
     aws_iam_role_policy_attachment.AWSEKSClusterPolicy,

@@ -4,6 +4,7 @@
 provider "aws" {
   version   = ">= 2.28.1"
   region    = var.region
+  profile = "default"
 }
 
 # Using the Availability Zones data source allows access to the list of AWS Availability Zones which can be accessed by an AWS account within the region configured in the provider.
