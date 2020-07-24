@@ -27,44 +27,6 @@ module "eks" {
   ]
 }
 
-# output "endpoint" {
-#   value = module.eks.endpoint
-# }
-
-# output "kubeconfig-certificate-authority-data" {
-#   value = module.eks.certificate_authority.0.data
-# }
-
-# resource "aws_iam_role" "iam-eks-role" {
-#   name = "turbo-cluster-eks-role"
-
-#   assume_role_policy = <<POLICY
-# {
-#   "Version": "2012-10-17",
-#   "Statement": [
-#     {
-#       "Effect": "Allow",
-#       "Principal": {
-#         "Service": "eks.amazonaws.com"
-#       },
-#       "Action": "sts:AssumeRole"
-#     }
-#   ]
-# }
-# POLICY
-# }
-
-# // referenced as a dependency in the "turbo-cluster" eks cluster resource.
-# resource "aws_iam_role_policy_attachment" "AWSEKSClusterPolicy" {
-#   policy_arn = "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSClusterPolicy"
-#   role       = aws_iam_role.iam-eks-role.name
-# }
-
-# resource "aws_iam_role_policy_attachment" "AWSEKSServicePolicy" {
-#   policy_arn = "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSServicePolicy"
-#   role       = aws_iam_role.iam-eks-role.name
-# }
-
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_id
 }
