@@ -9,6 +9,8 @@
 7. To inspect your state, check the file terraform writes to: `terraform.tfstate`. This file contains the IDs and properties of the resources we've created so that it can manage or destroy those resources going forward. **STORE THIS FILE REMOTELY IN PROD**; it both ensures security and enables collaboration.
 8. Inspect current state in the terminal with: `terraform show`
 9. Manually manage state using: `terraform state`, ex: to list resources managed by terraform, run `terraform state list`.
+10. Update your `kubeconfig` to use your new cluster by running: `aws eks --region ${REGION} update-kubeconfig --name ${CLUSTER_NAME}-${RANDOM_STRING}` 
+11. You should now be using this new context for kubectl commands, use `kubectl get namespaces` to verify you are now in a barebones cluster. The only namespaces you should see are default, kube-node-lease, kube-public, and kube-system. You can also check your `~/.kube/config` and verify the `current-context` field is the correct cluster.
   
 ---------------
   

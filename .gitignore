@@ -1,5 +1,9 @@
 turbo-db
 turbo-frontend
+
+# Secrets
+infra/tf/outputs.txt
+
 # Local .terraform directories
 infra/tf/.terraform/*
 
