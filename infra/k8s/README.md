@@ -18,3 +18,4 @@ We will use this app as a test platform for additional services/best practices w
 ```
 * **Techstack & Basic Architecture**
   * Diagram above. `/api` on the url hits the API path, and the base url hits the static file server.
+* 
