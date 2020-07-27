@@ -25,4 +25,8 @@ We will use this app as a test platform for additional services/best practices w
     * `docker build -t alpha:v0 --build-arg GIT_COMMIT=$(git log -1 --format=%h) .`
     * `docker inspect alpha:v0 | jq '.[].ContainerConfig.Labels'`
     * `docker tag alpha:v0 s1dequest/alpha:v0-${GIT_COMMIT}`
+    * `docker tag alpha:v0 s1dequest/alpha:latest`
     * `docker push s1dequest/alpha:v0-${GIT_COMMIT}`
+    * `docker push s1dequest/alpha:latest`
+* **Frontend**
+  * Deployment yaml deploys a 2 replica set of the image we pushed to docker hub (via the steps above).

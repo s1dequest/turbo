@@ -16,7 +16,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - image: my-repo/alpha-server:v1-HASH
+      - image: my-repo/alpha-server:latest
         imagePullPolicy: IfNotPresent
         name: frontend
         resources:
