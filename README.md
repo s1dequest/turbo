@@ -10,7 +10,8 @@
     * => Jenkins build and send Dockerhub 
     * => AWS EKS
     * => One of my domains
-
+  * Proceed to `~/infra/README.md` to get started in the nitty gritty.
+  
 #### The Cluster:
 * Before we deploy we need a cluster. Use a infrastructure as code and simple bash scripts to automate creation and testing functionality of an AWS EKS cluster.
 * **Tech Stack**

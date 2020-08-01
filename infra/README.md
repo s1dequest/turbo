@@ -12,6 +12,9 @@
 10. Update your `kubeconfig` to use your new cluster by running: `aws eks --region ${REGION} update-kubeconfig --name ${CLUSTER_NAME}-${RANDOM_STRING}` 
 11. You should now be using this new context for kubectl commands, use `kubectl get namespaces` to verify you are now in a barebones cluster. The only namespaces you should see are default, kube-node-lease, kube-public, and kube-system. You can also check your `~/.kube/config` and verify the `current-context` field is the correct cluster.
   
+## Setting up your Cluster 
+### For now, we will be setting up our cluster with YAML/Helm here rather than with the Kubernetes Terraform provider.
+1. Install Nginx using Bitnami's Helm chart. See `~/infra/k8s/alpha/ingress/README.md`.
 ---------------
   
 Take customer inputs via questions pertaining to Architecture tradeoffs.

@@ -7,5 +7,5 @@ echo $CLUSTER_NAME
 export REGION=$(jq -r '.region' ./tf/terraform.tfvars.json | tr -d "[:cntrl:]")
 echo $REGION
 
-# terraform init
-# terraform apply
+terraform init
+terraform apply

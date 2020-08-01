@@ -3,6 +3,7 @@ turbo-frontend
 
 # Secrets
 infra/tf/outputs.txt
+infra/tf/kubeconfig*
 
 # Local .terraform directories
 infra/tf/.terraform/*
