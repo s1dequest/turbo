@@ -15,6 +15,11 @@
 ## Setting up your Cluster 
 ### For now, we will be setting up our cluster with YAML/Helm here rather than with the Kubernetes Terraform provider.
 1. Install Nginx using Bitnami's Helm chart. See `~/infra/k8s/alpha/ingress/README.md`.
+```
+  a. helm repo add bitnami https://charts.bitnami.com/bitnami
+  b. helm install ingress-nginx-v1 bitnami/nginx
+```
+2. Once the ingress controller is healthy, apply the ingress object with `kubectl apply -f k8s/alpha/ingress/frontend-ingress.yaml`
 ---------------
   
 Take customer inputs via questions pertaining to Architecture tradeoffs.
