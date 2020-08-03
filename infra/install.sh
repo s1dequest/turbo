@@ -12,4 +12,9 @@ terraform apply
 # Grab cluster name from EKS. NOTE: Will only work if there is only 1 eks cluster in the account.
 export FULL_NAME=$(aws eks list-clusters | jq -r '.clusters[0]') # Includes random string.
 
+# Update your kubeconfig to access the new cluster.
 aws eks --region ${REGION} update-kubeconfig --name ${FULL_NAME}
+
+# Add bitnami charts and install nginx ingress controller.
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install ingress-nginx-v1 bitnami/nginx
