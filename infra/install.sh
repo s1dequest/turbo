@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
-
+cd tf/
 # export GIT_COMMIT=$(git log -1 --format=%h)
-export BASE_CLUSTER_NAME=$(jq -r '.clusterName' ./tf/terraform.tfvars.json | tr -d "[:cntrl:]")
-export REGION=$(jq -r '.region' ./tf/terraform.tfvars.json | tr -d "[:cntrl:]")
+export BASE_CLUSTER_NAME=$(jq -r '.clusterName' ./terraform.tfvars.json | tr -d "[:cntrl:]")
+export REGION=$(jq -r '.region' ./terraform.tfvars.json | tr -d "[:cntrl:]")
 
 # Run Terraform, apply any changes.
 terraform init

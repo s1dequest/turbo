@@ -7,24 +7,23 @@ module "eks" {
 
   tags = {
     Environment = "test"
+    GithubRepo  = "terraform-aws-eks"
+    GithubOrg   = "terraform-aws-modules"
   }
 
   worker_groups = [
     {
       name                          = "worker-group"
       instance_type                 = "t2.medium"
-      # additional_userdata           = "echo foo bar"
       asg_desired_capacity          = 3
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
     }
-    # {
-    #   name                          = "worker-group-2"
-    #   instance_type                 = "t2.small"
-    #   additional_userdata           = "echo foo bar"
-    #   asg_desired_capacity          = 2
-    #   additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-    # }
   ]
+ 
+  worker_additional_security_group_ids = [aws_security_group.all_worker_mgmt.id]
+  map_roles                            = var.map_roles
+  map_users                            = var.map_users
+  map_accounts                         = var.map_accounts
 }
 
 data "aws_eks_cluster" "cluster" {
