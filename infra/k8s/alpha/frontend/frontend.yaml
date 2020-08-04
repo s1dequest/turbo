@@ -8,7 +8,7 @@ metadata:
 spec:
   replicas: 2
   selector:
-    matchlabels:
+    matchLabels:
       app: frontend
   template:
     metadata:
@@ -16,11 +16,11 @@ spec:
         app: frontend
     spec:
       containers:
-      - image: my-repo/alpha-server:latest
+      - image: s1dequest/alpha:latest
         imagePullPolicy: IfNotPresent
         name: frontend
         resources:
-          request:
+          requests:
             cpu: "1.0"
             memory: "1G"
           limits:
