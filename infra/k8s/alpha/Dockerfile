@@ -5,7 +5,6 @@ LABEL git_commit=$GIT_COMMIT
 
 COPY server.js /server.js
 
-COPY package.json /
-RUN npm install
+RUN npm install -g redis
 
 CMD node /server.js
