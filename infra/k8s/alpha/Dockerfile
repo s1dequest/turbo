@@ -1,9 +1,14 @@
 FROM node:10-alpine
 
+WORKDIR /app
+
 ARG GIT_COMMIT=unspecified
 LABEL git_commit=$GIT_COMMIT
 
-COPY server.js /server.js
-RUN npm install -g redis@2.8.0
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+COPY server.js server.js
 
-CMD tail -f /dev/null
+RUN npm install redis@2.8.0
+
+CMD node server.js
