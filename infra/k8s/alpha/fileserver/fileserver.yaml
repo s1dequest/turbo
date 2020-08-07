@@ -16,9 +16,11 @@ spec:
         app: fileserver
     spec:
       containers:
-      - image: s1dequest/alpha:latest
-        imagePullPolicy: IfNotPresent
+      - image: s1dequest/fileserver:latest
+        imagePullPolicy: Always
         name: fileserver
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
         resources:
           requests:
             cpu: "1.0"
@@ -26,4 +28,6 @@ spec:
           limits:
             cpu: "1.0"
             memory: "1G"
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
 

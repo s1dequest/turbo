@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: fileserver
+  name: fileserver
+  namespace: default
+spec:
+  selector:
+    app: fileserver
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  sessionAffinity: None
+  type: ClusterIP
