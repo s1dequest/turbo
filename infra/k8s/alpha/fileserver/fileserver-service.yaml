@@ -2,12 +2,12 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    app: fileserver
-  name: fileserver
+    app: frontend
+  name: frontend
   namespace: default
 spec:
   selector:
-    app: fileserver
+    app: frontend
   ports:
   - port: 80
     protocol: TCP

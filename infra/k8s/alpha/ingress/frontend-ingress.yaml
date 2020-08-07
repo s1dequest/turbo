@@ -10,3 +10,7 @@ spec:
         backend:
           serviceName: frontend
           servicePort: 8080
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80
