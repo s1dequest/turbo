@@ -1,14 +1,13 @@
 package main
 
 import (
-				"crypto/rand"
-				"crypto/rsa"
-				"crypto/x509"
-				"crypto/x509/pkix"
-				"encoding/asn1"
-				"encoding/pem"
-				"os"
-
+	"crypto/rand"
+	"crypto/rsa"
+	"crypto/x509"
+	"crypto/x509/pkix"
+	"encoding/asn1"
+	"encoding/pem"
+	"os"
 )
 
 func main() {
@@ -21,7 +20,7 @@ func main() {
 	}
 	keyDer := x509.MarshalPKCS1PrivateKey(key)
 	keyBlock := pem.Block{
-		Type: "RSA PRIVATE KEY",
+		Type:  "RSA PRIVATE KEY",
 		Bytes: keyDer,
 	}
 	keyFile, err := os.Create(name + "-key.pem")
@@ -31,6 +30,7 @@ func main() {
 	pem.Encode(keyFile, &keyBlock)
 	keyFile.Close()
 	commonName := user
+	// The below strings you will likely want to customize and change per user/cert you generate.
 	emailAddress := "maxz@hey.com"
 
 	org := "brainbard.io"
@@ -40,21 +40,21 @@ func main() {
 	country := "US"
 
 	subject := pkix.Name{
-		CommonName: commonName,
-		Country: []string{country},
-		Locality: []string{city},
-		Organization: []string{org},
+		CommonName:         commonName,
+		Country:            []string{country},
+		Locality:           []string{city},
+		Organization:       []string{org},
 		OrganizationalUnit: []string{orgUnit},
-		Province: []string{state}
+		Province:           []string{state},
 	}
 	asn1, err := asn1.Marshal(subject.ToRDNSequence())
 	if err != nil {
 		panic(err)
 	}
 	csr := x509.CertificateRequest{
-		RawSubject: asn1,
-		EmailAddresses: []string{emailAddress},
-		SignatureAlgorithm: x509.SHA256WithRSA
+		RawSubject:         asn1,
+		EmailAddresses:     []string{emailAddress},
+		SignatureAlgorithm: x509.SHA256WithRSA,
 	}
 
 	bytes, err := x509.CreateCertificateRequest(rand.Reader, &csr, key)
@@ -70,4 +70,3 @@ func main() {
 	pem.Encode(csrFile, &pem.Block{Type: "CERTIFICATE REQUEST", Bytes: bytes})
 	csrFile.Close()
 }
-
