@@ -20,11 +20,7 @@
     - `helm install ingress-nginx-v1 bitnami/nginx`  
 2. Once the ingress controller is healthy apply the ingress object.
     - `kubectl apply -f k8s/alpha/ingress/frontend-ingress.yaml`  
-3. The book says we should deploy our docker image at this point, but as the Dockerfile currently stands, it errors out with:
-```
-Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
-```
-So we won't be doing that just yet.  
+3. The book says we should deploy our docker image at this point, but as the Dockerfile currently stands, it errors out with `Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379`so we won't be doing that just yet.  
 4. We can, however, deploy the `frontend-service.yaml` so that we don't have to later.  
     - `kubectl apply -f k8s/alpha/frontend/frontend-service.yaml`  
 5. Create a configmap to set the 'journal entries per page'.  
