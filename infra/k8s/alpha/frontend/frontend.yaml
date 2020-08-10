@@ -20,9 +20,9 @@ spec:
         imagePullPolicy: IfNotPresent
         name: frontend
         resources:
-          requests:
-            cpu: "1.0"
-            memory: "1G"
+          # requests:
+          #   cpu: "1.0"
+          #   memory: "1G"
           limits:
             cpu: "1.0"
             memory: "1G"

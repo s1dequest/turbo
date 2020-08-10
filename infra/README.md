@@ -14,7 +14,7 @@
   
 ## Setting up your Cluster with a Stateful App. 
 ### For now, we will be setting up our cluster with YAML/Helm here rather than with the Kubernetes Terraform provider.
-0. In infra/k8s, follow the directions in the README to push your starter docker image to Docker Hub for testing. Do the same for the fileserver docker image.
+0. In infra/, follow the directions in the README to push your starter docker image to Docker Hub for testing. Do the same for the fileserver docker image.
 1. Install Nginx using Bitnami's Helm chart. See `~/infra/k8s/alpha/ingress/README.md`.
     - `helm repo add bitnami https://charts.bitnami.com/bitnami`  
     - `helm install ingress-nginx-v1 bitnami/nginx`  
@@ -36,7 +36,14 @@
     - `cd k8s/alpha/redis`  
     - `kubectl create configmap redis-config --from-file=launch.sh=launch.sh`  
 10. As with above, the configmap is used in the redis statefulset via the `volume` and `volumeMounts` stanzas that reference it.  
-11. Apply the kubernetes objects for the static file hosting server. This is similar to the steps we performed above for creating deployment objects, services, and adding to the ingress object.  
+11. Apply the frontend deployment.
+    - `cd ../../../` (back to ~/infra/)
+    - `kubectl apply -f k8s/alpha/frontend/frontend.yaml`
+12. Apply the redis objects.
+    - `kubectl apply -f k8s/alpha/redis/redis-headless.yaml`
+    - `kubectl apply -f k8s/alpha/redis/redis-service.yaml`
+    - `kubectl apply -f k8s/alpha/redis/redis-ss.yaml`
+13. Apply the kubernetes objects for the static file hosting server. This is similar to the steps we performed above for creating deployment objects, services, and adding to the ingress object.  
     - `kubectl apply -f k8s/alpha/fileserver/fileserver.yaml`  
     - `kubectl apply -f k8s/alpha/fileserver/fileserver-service.yaml`   
 
