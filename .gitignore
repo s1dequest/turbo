@@ -5,6 +5,7 @@ infra/k8s/alpha/node_modules
 # Secrets
 infra/tf/outputs.txt
 infra/tf/kubeconfig*
+csr-gen
 
 # Local .terraform directories
 infra/tf/.terraform/*
