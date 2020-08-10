@@ -50,7 +50,7 @@ We will use this app as a test platform for additional services/best practices w
     - `kubectl create configmap redis-config --from-file=launch.sh=launch.sh`  
 10. As with above, the configmap is used in the redis statefulset via the `volume` and `volumeMounts` stanzas that reference it.  
 11. Apply the frontend deployment.
-    - `cd ../../../` (back to ~/infra/)
+    - `cd ../../` (back to ~/infra/)
     - `kubectl apply -f alpha/frontend/frontend.yaml`
 12. Apply the redis objects.
     - `kubectl apply -f alpha/redis/redis-headless.yaml`
