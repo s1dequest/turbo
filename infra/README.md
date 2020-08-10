@@ -1,5 +1,6 @@
 ## Initial Provisioning of Infrastructure via Terraform:
 ### Reference: https://learn.hashicorp.com/terraform/getting-started/build
+0. Skip steps 1-11 by running `./install.sh`
 1. From /turbo/, `cd infra/tf/`
 2. To initialize your terraform backend locally: `terraform init`
 3. Format your terraform into a readable and consistent form: `terraform fmt`
@@ -11,10 +12,12 @@
 9. Manually manage state using: `terraform state`, ex: to list resources managed by terraform, run `terraform state list`.
 10. Update your `kubeconfig` to use your new cluster by running: `aws eks --region ${REGION} update-kubeconfig --name ${CLUSTER_NAME}-${RANDOM_STRING}` 
 11. You should now be using this new context for kubectl commands, use `kubectl get namespaces` to verify you are now in a barebones cluster. `kubectl get nodes -o wide` to verify your master node can see the worker pool we've created. The only namespaces you should see are default, kube-node-lease, kube-public, and kube-system. You can also check your `~/.kube/config` and verify the `current-context` field is the correct cluster.
+
+#### Once this is complete, proceed to the readme in ~/infra/k8s.
   
 ## Setting up your Cluster with a Stateful App. 
 ### For now, we will be setting up our cluster with YAML/Helm here rather than with the Kubernetes Terraform provider.
-0. In infra/, follow the directions in the README to push your starter docker image to Docker Hub for testing. Do the same for the fileserver docker image.
+0. In infra/, follow the directions in the README to push your starter docker image to Docker Hub for testing. Do the same for the fileserver docker image. Alternatively, you can use mine!
 1. Install Nginx using Bitnami's Helm chart. See `~/infra/k8s/alpha/ingress/README.md`.
     - `helm repo add bitnami https://charts.bitnami.com/bitnami`  
     - `helm install ingress-nginx-v1 bitnami/nginx`  

@@ -1,6 +1,8 @@
 # turbo 🏎️💨_____🚗_🚗_🚗
 ### Turbocharged, Hands-free, CI/CD 
-
+**THIS IS A WORK IN PROGRESS.**  
+And thus, you probably shouldn't try to use it yet. I still have a lot of things to add and figure out.
+  
 #### The idea:
 * Have Code you want to Deploy? Use _**turbo**_: a fully formed, automated, end-to-end app deployment system. 
   * Roadway:
