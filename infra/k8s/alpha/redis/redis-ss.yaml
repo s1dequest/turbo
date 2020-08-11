@@ -4,7 +4,7 @@ metadata:
   name: redis
 spec:
   serviceName: "redis"
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: redis
@@ -19,26 +19,21 @@ spec:
         ports:
         - containerPort: 6379
           name: redis
+        envFrom:
+        - secretRef:
+            name: redis-passwd
         volumeMounts:
         - name: data
           mountPath: /data
-        - name: script
-          mountPath: /script/launch.sh
-          subPath: launch.sh
-        - name: passwd-volume
-          mountPath: /etc/redis-passwd
         command:
-        - sh
-        - -c
-        - /script/launch.sh
-      volumes:
-      - name: script
-        configMap:
-          name: redis-config
-          defaultMode: 0777
-      - name: passwd-volume
-        secret:
-          secretName: redis-passwd
+        - /bin/sh
+        - '-c'
+        - >
+          if [[ "${HOSTNAME}" == "redis-0" ]]; then
+          redis-server --requirepass ${passwd};
+          else
+          redis-server --slaveof redis-0.redis 6379 --masterauth ${passwd} --requirepass ${passwd};
+          fi;
   volumeClaimTemplates:
   - metadata:
       name: data
