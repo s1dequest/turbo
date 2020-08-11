@@ -8,8 +8,6 @@ kubectl delete statefulsets redis
 
 kubectl delete deployments frontend
 
-kubectl delete configmap redis-config
-
 kubectl delete secret redis-passwd  
 
 kubectl delete configmap frontend-config

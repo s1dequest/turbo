@@ -16,13 +16,7 @@ echo "Creating a password for redis using built-in random string generator..."
 kubectl create secret generic redis-passwd --from-literal=passwd=${RANDOM}  
 
 echo
-echo "Creating configmap to help launch redis..."
-cd alpha/redis  
-kubectl create configmap redis-config --from-file=launch.sh=launch.sh
-
-echo
 echo "Applying frontend replicated deployment..."
-cd ../../
 kubectl apply -f alpha/frontend/frontend.yaml
 
 echo
