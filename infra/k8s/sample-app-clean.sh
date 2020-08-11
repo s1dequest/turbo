@@ -14,27 +14,3 @@ kubectl delete configmap frontend-config
 
 kubectl delete service frontend
 kubectl delete ingress frontend-ingress  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
