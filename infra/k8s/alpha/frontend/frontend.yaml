@@ -39,4 +39,4 @@ spec:
       volumes:
         - name: passwd-volume
           secret:
-            secretName: redis-password
+            secretName: redis-passwd

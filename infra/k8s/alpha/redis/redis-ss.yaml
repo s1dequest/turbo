@@ -26,7 +26,7 @@ spec:
           mountPath: /script/launch.sh
           subPath: launch.sh
         - name: passwd-volume
-          mountPath: /etc/redis-password
+          mountPath: /etc/redis-passwd
         command:
         - sh
         - -c
@@ -38,12 +38,12 @@ spec:
           defaultMode: 0777
       - name: passwd-volume
         secret:
-          secretName: redis-password
+          secretName: redis-passwd
   volumeClaimTemplates:
   - metadata:
       name: data
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      resource:
+      resources:
         requests:
           storage: 10Gi

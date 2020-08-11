@@ -43,7 +43,7 @@ We will use this app as a test platform for additional services/best practices w
     - Going forward, we would want to create a new 'versioned' configMap (by simply naming it `frontend-config-v1` for example) such that any change we make would require a change to our manifest, and would thus trigger a rollout and maintain the declarative nature of our application.  
 6. The env var is referenced in the deployment with the `env: ...` stanza in `frontend.yaml`.  
 7. Create a secret for our test application.  
-    - `kubectl create secret generic redis-password --from-literal=passwd=${RANDOM}`  
+    - `kubectl create secret generic redis-passwd --from-literal=passwd=${RANDOM}`  
 8. The secret is bound to the deployment via the a volume stanza in `frontend.yaml`.  
 9. Create a configmap of the launch script for redis.   
     - `cd alpha/redis`  
