@@ -5,7 +5,7 @@ const client = redis.createClient({
     'host': '127.0.0.1'
 });
 
-const port = 8080;
+const port = 6379;
 
 const requestHandler = (request, response) => {
     console.log(request.url);
