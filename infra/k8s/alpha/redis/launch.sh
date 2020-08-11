@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 PASSWORD=$(cat /etc/redis-passwd/passwd)
 
