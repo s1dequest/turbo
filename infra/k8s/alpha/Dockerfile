@@ -1,7 +1,5 @@
 FROM node:10-alpine
 
-WORKDIR /app
-
 ARG GIT_COMMIT=unspecified
 LABEL git_commit=$GIT_COMMIT
 
