@@ -33,7 +33,7 @@ spec:
               name: frontend-config
               key: journalEntries
         volumeMounts:
-          - mountPath: "/etc/passwd"
+          - mountPath: "/etc/redis-passwd"
             name: passwd-volume
             readOnly: true
       volumes:

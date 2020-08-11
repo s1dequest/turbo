@@ -27,7 +27,7 @@ kubectl apply -f alpha/frontend/frontend.yaml
 
 echo
 echo "Applying redis services and statefulset..."
-kubectl apply -f alpha/redis/redis-headless.yaml
+kubectl apply -f alpha/redis/redis-headless.yaml 
 kubectl apply -f alpha/redis/redis-service.yaml
 kubectl apply -f alpha/redis/redis-ss.yaml
 
