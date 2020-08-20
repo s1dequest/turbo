@@ -18,27 +18,10 @@ And thus, you probably shouldn't try to use it yet. I still have a lot of things
   * AWS - CLI, EKS
   * Terraform
   * Bash
+* Our AWS EKS cluster will be watching the DockerHub registry. Basically, it will be checking continuously whether the version tag and/or commit SHA of the containers its running are = to the most recent ones in Docker Hub. If it isn't, a Rolling Update will be triggered on the cluster. The Rolling Update will be such that perceived customer downtime is 0, but the rollout itself is still fast.
 
-#### The Code:
-* The focus should be on the Pipeline, so this will be nothing fancy. Just some simple HTML and with a mongoDB to demo persistent storage.
+#### The Sample Code:
+* The focus is be on the Pipeline, so this will be nothing fancy. It's just to demostrate how one would hook an app up to the cluster.
 * **Tech Stack:**
   * HTML/CSS
-  * MongoDB
-  
-#### Containerization:
-* Since we want to automate/show intra-cluster communication between Pods, we will build two containers from our code. One for the front-end, the other for Mongo.
-* So, we will have two small Dockerfiles to push to DockerHub.
-* Dockerfiles will include Versioning/Tagging, and a unique SHA from the Commit ID for each build.
-* **Tech Stack:**
-  * GitHub
-  * Docker & Dockerfiles
-
-#### DockerHub
-* There is no need for a private container registry in this case, for most people DockerHub would suffice.
-* To build and validate the containers, we need some remote code build tool. Most organizations seem to use Jenkins, so we will use it too.
-* Commits to `master` in the frontend and/or Mongo repo's will automatically trigger a Jenkins pipeline. Jenkins will validate/build the code, containerize them, then send the containers to DockerHub.
-* **Tech Stack**
-  * Jenkins
-
-#### AWS EKS
-* Our AWS EKS cluster will be watching the DockerHub registry. Basically, it will be checking continuously whether the version tag and/or commit SHA of the containers its running are = to the most recent ones in Docker Hub. If it isn't, a Rolling Update will be triggered on the cluster. The Rolling Update will be such that perceived customer downtime is 0, but the rollout itself is still fast.
+  * Redis and/or MongoDB to demo statefulness.
