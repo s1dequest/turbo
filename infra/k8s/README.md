@@ -29,8 +29,9 @@ We will use this app as a test platform for additional services/best practices w
     - `docker tag alpha:v0 s1dequest/alpha:latest` It's a best practice to tag your image twice, one that is uniquely versioned, and the other generic (latest) such that users can set their deployment to always use the latest version of the app code.
     - `docker push s1dequest/alpha:v0-${GIT_COMMIT}` For more uniqueness, this adds the git commit sha to the end of your version tag.
     - `docker push s1dequest/alpha:latest`
-1. Make sure you've already run the `./install.sh` script from /infra/README.md to automatically build your EKS cluster with Terraform, add the credentials to your kubeconfig, and install an nginx ingress controller on the cluster.
+1a. Make sure you've already run the `./install.sh` script from /infra/README.md to automatically build your EKS cluster with Terraform, add the credentials to your kubeconfig, and install an nginx ingress controller on the cluster.
     - `kubectl get pods` Should show a healthy ingress pod on your cluster.
+1b. Skip Steps 2-13 by running `alpha-deploy.sh`. This script isn't bullet-proof, but it should work just fine for deploying this test application.
 2. Once the ingress controller is healthy apply the ingress object.
     - `kubectl apply -f alpha/ingress/frontend-ingress.yaml`  
 3. The book says we should deploy our docker image at this point, but as the Dockerfile currently stands, it errors out with `Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379`so we won't be doing that just yet.  

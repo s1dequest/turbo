@@ -4,15 +4,13 @@
 And thus, you probably shouldn't try to use it yet. I still have a lot of things to add and figure out.
   
 #### The idea:
-* Have Code you want to Deploy? Use _**turbo**_: a fully formed, automated, end-to-end app deployment system. 
-  * Roadway:
-    * Deploy an empty EKS Cluster to send the code to.
-    * => Code 
-    * => Container (Dockerfile)
-    * => Jenkins build and send Dockerhub 
-    * => AWS EKS
-    * => One of my domains
-  * Proceed to `~/infra/README.md` to get started in the nitty gritty.
+* Want to optimize development by automatically building and destroying individual dev clusters daily? Use _**turbo**_: a fully formed, automated, end-to-end app deployment system. 
+  * Basic Roadway: AWS Lambda script is runs on a cron schedule, for each of your devs, it...
+    * => Hits a CI/CD tool, like Jenkins, which kicks off...
+    * => Terraform scripts to deploy an empty EKS Cluster,
+    * => Deployment of Kubernetes objects for securely running and exposing development environment, 
+    * => A Slack message including cluster credentials, endpoints, and other relevant information.
+  * Proceed to `~/infra/README.md` to get started in the nitty gritty as the project currently stands.
   
 #### The Cluster:
 * Before we deploy we need a cluster. Use a infrastructure as code and simple bash scripts to automate creation and testing functionality of an AWS EKS cluster.
