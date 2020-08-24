@@ -76,6 +76,7 @@ We will use this app as a test platform for additional services/best practices w
     * kube-proxy,
     * kube-dns,
     * Pods
+  
 That's a lot to keep an eye on! Luckily, Kubernetes has some built in components that make it easier to get the information we need from our cluster resources:
 * **cAdvisor**
   * An open-source project that collects resources and metrics for containers running on a node.
@@ -90,3 +91,23 @@ That's a lot to keep an eye on! Luckily, Kubernetes has some built in components
 * **kube-state-metrics**  
   * A K8s add-on that monitors the object stored in Kubernetes.
   * Focused on identifying conditions on objects deployed to your cluster rather than resource usage like the prior two we mentioned above.
+  
+So, Kubernetes gives us the tools to monitor everything, but how should we _think_ about Monitoring, Logging, and Alerting?
+* We don't want to monitor absolutely everything. The idea is to capture what we need and alert on what is important. Anything more will water things down and just make it more difficult for developers to perform triage on issues, or not respond with proper urgency when an alert is sent to Slack.
+  
+What will we capture?
+* Nodes
+  * CPU Utilization
+  * Memory Utilization
+  * Network Utilization
+  * Disk Utilization
+* Cluster Components
+  * etcd Latency
+* Cluster add-ons
+  * Cluster Autoscaler
+  * Ingress Controller
+* Application
+  * Container memory utilization and saturation
+  * Container cpu utilization
+  * Container network utilization and error rate
+  * Application framework-specific metrics
