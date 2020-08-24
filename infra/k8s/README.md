@@ -78,4 +78,15 @@ We will use this app as a test platform for additional services/best practices w
     * Pods
 That's a lot to keep an eye on! Luckily, Kubernetes has some built in components that make it easier to get the information we need from our cluster resources:
 * **cAdvisor**
-  *
+  * An open-source project that collects resources and metrics for containers running on a node.
+  * **Built into the kubelet.**
+  * Collects CPU metrics, disk I/O, and network I/O.
+* **Metrics Server**
+  * Gathers resource metrics like CPU and memory from the kubelet's API and stores them in memory.
+    * Kubernetes actually uses these metrics in the scheduler and for pod autoscaling (HPA and VPA).
+  * Including in the Metrics Server is the **Custom Metrics API**.
+    * The CM API alls monitoring systems to collect metrics, allowing them to build adapters for extending outside the core resource metrics.
+      * **Prometheus** uses its own adapter for its functionality.
+* **kube-state-metrics**  
+  * A K8s add-on that monitors the object stored in Kubernetes.
+  * Focused on identifying conditions on objects deployed to your cluster rather than resource usage like the prior two we mentioned above.
