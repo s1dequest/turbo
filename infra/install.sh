@@ -41,3 +41,13 @@ echo "."
 echo "."
 helm repo add stable https://kubernetes-charts.storage.googleapis.com
 helm install prom stable/prometheus-operator
+
+echo
+echo "Adding EFK Stack for application monitoring and logging."
+echo "."
+echo "."
+echo "."
+kubectl create namespace logging
+cd ../k8s/monitoring
+kubectl apply -f elasticsearch-operator.yaml -n logging
+kubectl apply -f efk.yaml -n logging
