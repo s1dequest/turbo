@@ -123,12 +123,4 @@ What will we capture?
   * `kubectl port-forward svc/prom-grafana 3000:80`
   * Navigate to `localhost:3000`. un = `admin`, pw = `prom-operator` by default.
   
-#### Adding an EFK Stack to the cluster:
-* Install our manifests...
-  * `kubectl create namespace logging`
-  * `kubectl apply -f /monitoring/elasticsearch.yaml -n logging`
-  * `kubectl apply -f /monitoring/efk.yaml -n logging`
-* Connect to Kibana via...
-  * `export POD_NAME=$(kubectl get pods -n logging -l "app=kibana,release=efk" -o jsonpath="{.items[0].metadata.name}")`
-  * `kubectl port-forward $POD_NAME 5601:5601`
-  * Navigate to `localhost:5601`
+
