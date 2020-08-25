@@ -111,3 +111,20 @@ What will we capture?
   * Container cpu utilization
   * Container network utilization and error rate
   * Application framework-specific metrics
+  
+#### Adding Prometheus to the cluster:
+* Install it using the stable helm chart:
+  * `helm repo add stable https://kubernetes-charts.storage.googleapis.com`
+  * `helm install prom stable/prometheus-operator`
+* Connect to Prometheus locally with...
+  * `kubectl port-forward svc/prom-prometheus-operator-prometheus 9090`
+  * Navigate to `localhost:9090`
+* Connect to Grafana locally with...
+  * `kubectl port-forward svc/prom-grafana 3000:80`
+  * Navigate to `localhost:3000`. un = `admin`, pw = `prom-operator` by default.
+  
+#### Adding an EFK Stack to the cluster:
+* Install our manifests...
+  * `kubectl create namespace logging`
+  * `kubectl apply -f /monitoring/elasticsearch-operator.yaml -n logging`
+  * `kubectl apply -f /monitoring/efk.yaml -n logging`
