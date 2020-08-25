@@ -49,5 +49,5 @@ echo "."
 echo "."
 kubectl create namespace logging
 cd ../k8s/monitoring
-kubectl apply -f elasticsearch-operator.yaml -n logging
+kubectl apply -f elasticsearch.yaml -n logging
 kubectl apply -f efk.yaml -n logging

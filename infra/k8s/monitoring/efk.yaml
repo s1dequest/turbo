@@ -144,7 +144,7 @@ spec:
     release: efk
   type: ClusterIP
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -152,6 +152,9 @@ metadata:
     release: efk
   name: efk-kibana
 spec:
+  selector:
+    matchLabels:
+      name: fluentd-elasticsearch
   replicas: 1
   revisionHistoryLimit: 3
   template:
@@ -269,7 +272,7 @@ spec:
   use-ssl: false
   zones: []
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
@@ -277,6 +280,9 @@ metadata:
     release: efk
   name: fluent-bit
 spec:
+  selector:
+    matchLabels:
+      name: fluent-bit
   template:
     metadata:
       annotations:
