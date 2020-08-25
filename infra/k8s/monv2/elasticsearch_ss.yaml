@@ -64,3 +64,14 @@ spec:
         command: ["sh", "-c", "ulimit -n 65536"]
         securityContext:
           privileged: true
+  volumeClaimTemplates: # Kubernetes uses the following to create persistent volumes for the pods.
+  - metadata:
+      name: data
+      labels:
+        app: elasticsearch
+    spec:
+      accessModes: [ "ReadWriteOnce" ] # Can only be mounted as read-write by a single node.
+      resources:
+        requests:
+          storage: 100Gi
+ 
