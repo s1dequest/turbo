@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: elasticsearch
+  namespace: kube-logging
+  labels:
+    app: elasticsearch 
+spec:
+  selector:
+    app: elasticsearch # This service will redirect traffic to pods with this label.
+  clusterIP: None # Headless.
+  ports: # Set for interacting with the REST API and allow for inter-node communication.
+    - port: 9200
+      name: rest
+    - port: 9300
+      name: inter-node
