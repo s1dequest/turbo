@@ -24,7 +24,7 @@ rules:
   - list
   - watch
 ---
-kind: ClusterRoleBinding
+kind: ClusterRoleBinding # Grants the fluentd Service account the above Cluster Role.
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: fluentd
@@ -36,3 +36,57 @@ subjects:
 - kind: ServiceAccount
   name: fluentd
   namespace: kube-logging
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd
+  namespace: kube-logging
+  labels:
+    app: fluentd
+spec:
+  selector:
+    matchLabels:
+      app: fluentd
+  template:
+    metadata:
+      labels:
+        app: fluentd
+    spec:
+      serviceAccount: fluentd # Assign the daemonset the service account from above.
+      serviceAccountName: fluentd
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule # Read more about this here https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+      containers:
+      - name: fluentd
+        image: fluent/fluentd-kubernetes-daemonset:v1.4.2-debian-elasticsearch-1.1
+        env:
+          - name:  FLUENT_ELASTICSEARCH_HOST # The headless service address from earlier.
+            value: "elasticsearch.kube-logging.svc.cluster.local" # To distribute logs across the cluster, you will need to modify the configuration for Fluentd’s Elasticsearch Output plugin https://docs.fluentd.org/v1.0/articles/out_elasticsearch#hosts-(optional)
+          - name:  FLUENT_ELASTICSEARCH_PORT
+            value: "9200" # Same port from earlier
+          - name: FLUENT_ELASTICSEARCH_SCHEME
+            value: "http"
+          - name: FLUENTD_SYSTEMD_CONF
+            value: disable # Suppress output to systemd
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
