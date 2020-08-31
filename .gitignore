@@ -1,6 +1,7 @@
 turbo-db
 turbo-frontend
 infra/k8s/alpha/node_modules
+infra/k8s/security/notes.md
 
 # Secrets
 infra/tf/outputs.txt
