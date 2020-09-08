@@ -7,7 +7,7 @@ export REGION=$(jq -r '.region' ./terraform.tfvars.json | tr -d "[:cntrl:]")
 # Run Terraform, apply any changes.
 echo
 echo "Now initializing your Terraform backend and applying the changes required..."
-echo "This will take about 12 minutes."
+echo "This will take about 15 minutes."
 echo "."
 echo "."
 echo "."
