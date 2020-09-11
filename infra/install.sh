@@ -39,6 +39,17 @@ echo "Adding Prometheus Operator for configuring cluster monitoring."
 echo "."
 echo "."
 echo "."
-helm repo add stable https://kubernetes-charts.storage.googleapis.com
-helm install prom stable/prometheus-operator
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm install prom prometheus-community/prometheus
 
+echo
+echo "Deploying your EFK cluster logging stack."
+echo "."
+echo "."
+echo "."
+cd k8s/monitoring
+kubectl create -f kube-logging.yaml
+kubectl create -f elasticsearch_svc.yaml
+kubectl create -f elasticsearch_ss.yaml
+kubectl create -f kibana.yaml
+kubectl create -f fluentd.yaml

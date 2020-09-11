@@ -10,11 +10,12 @@ module "eks" {
     GithubRepo  = "terraform-aws-eks"
     GithubOrg   = "terraform-aws-modules"
   }
-
+# ami-094d167ed104bc0a2
   worker_groups = [
     {
       name                          = "worker-group"
       instance_type                 = "t2.medium"
+      # ami_id                        = "ami-094d167ed104bc0a2"
       asg_desired_capacity          = 3
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
     }

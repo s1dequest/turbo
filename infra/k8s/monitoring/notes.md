@@ -7,6 +7,6 @@ Follow rollout with `kubectl rollout status sts/es-cluster --namespace=kube-logg
 Connect via `kubectl port-forward es-cluster-0 9200:9200 --namespace=kube-logging`
 Check connection with `curl http://localhost:9200/_cluster/state?pretty`
 `kubectl create -f kibana.yaml`
-Connect to kibana `kubectl port-forward kibana-866c457776-9v87s 5601:5601 --namespace=kube-logging`
+Connect to kibana `kubectl port-forward kibana-866c457776-j98t5 5601:5601 --namespace=kube-logging`
 Nav to `http://localhost:5601`
 `kubectl create -f fluentd.yaml`
