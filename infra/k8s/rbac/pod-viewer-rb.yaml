@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: view-pods
+  namespace: default
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: podviewer@example.com
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role # Must be Role or ClusterRole
+  name: pod-viewer # Must match the name from the separate Role yaml.
