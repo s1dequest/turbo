@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+data:
+  mysqldb: myappdb1
+  user: mysqluser1
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+type: Opaque
+data:
+  rootpassword: xxxyyy
+  userpassword: yyyzzz
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-db-deploy
+spec:
+  selector:
+    matchLabels:
+      app: myapp-db
+  template:
+    metadata:
+      labels:
+        app: myapp-db
+  spec:
+    containers:
+    - name: myapp-db-instance
+      image: mysql
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      ports:
+      - containerPort: 3306
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: rootpassword
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: userpassword
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-config
+              key: user
+        - name: MYSQL_DB
+          valueFrom:
+            secretKeyRef:
+              name: mysql-config
+              key: mysqldb
