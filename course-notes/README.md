@@ -2,6 +2,8 @@
 
 ## Rough Ideas
 
+
+
 *What is at the heart of DevOps?*
 
 Between 2 companies the role of DevOps Engineer was very similar. This may be surprising given that it has such a broad definition, but broadness is kind of the essence of DevOps.
@@ -25,3 +27,12 @@ And what will I learn in this course?
 * And occasionally we are also tech support for the less bash/terminal inclined members of our team.
 
 As you can see, this is quite the torch to bear! Luckily, you have this course to help guide you along your journey.
+
+## What can be done to accomplish them?
+
+* Design a Course Outline. Can use DevOps roadmap. Pick top two (ish) items from each area to cover.
+* For each piece/section, write a course with included code examples and diagrams.
+  * Figure out best way to record diagrams. Maybe get a drawing pad for PC and record screen?
+* Write a script for each section. Showing screen caps (with me recorded in corner, like a Twitch stream)
+  * For certain parts it can just be me in the video, or just a white board if I am drawing a diagram.
+  
