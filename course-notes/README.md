@@ -2,7 +2,7 @@
 
 ## Rough Ideas
 
-
+Create scalable, highly available, infrastructure as code based cloud architecture for a sample application (that uses a database and redis for caching). It should be cheap to run and easy to destroy so there is not stress about wasting money.
 
 *What is at the heart of DevOps?*
 
@@ -35,4 +35,3 @@ As you can see, this is quite the torch to bear! Luckily, you have this course t
   * Figure out best way to record diagrams. Maybe get a drawing pad for PC and record screen?
 * Write a script for each section. Showing screen caps (with me recorded in corner, like a Twitch stream)
   * For certain parts it can just be me in the video, or just a white board if I am drawing a diagram.
-  
