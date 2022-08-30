@@ -1,7 +1,8 @@
 # turbo 🏎️💨_____🚗_🚗_🚗
 ### Turbocharged, Hands-free, CI/CD 
-**THIS IS A WORK IN PROGRESS.**  
-And thus, you probably shouldn't try to use it yet. I still have a lot of things to add and figure out.
+**I never finished this and would do it quite differently as of 08/2022**
+
+And thus, you probably shouldn't try to use it...
   
 #### The idea:
 * Want to optimize development by automatically building and destroying individual dev clusters daily? Use _**turbo**_: a fully formed, automated, end-to-end app deployment system. 
